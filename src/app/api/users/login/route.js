@@ -1,6 +1,5 @@
 import db from "../../../../lib/db";
-import response from "../../../../utils/response";
-import bcrypt from "bcrypt"; // install kalau belum: npm install bcrypt
+import response from "../../../../utils/response"; // install kalau belum: npm install bcrypt
 export const dynamic = "force-dynamic";
 
 export async function POST(request) {
@@ -32,9 +31,8 @@ export async function POST(request) {
 
     const user = rows[0];
 
-    // Bandingkan password dengan hash
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
+    // Bandingkan password langsung
+    if (password !== user.password) {
       return new Response(
         JSON.stringify(response(401, null, "Invalid username or password")),
         { status: 401 }
