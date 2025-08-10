@@ -306,7 +306,7 @@ const DashboardLayout = ({ title, children }) => {
         <section className="flex border-t border-[#4D55CC]">
           {/* Sidebar Mobile */}
           {showButton && (
-            <aside className="text-white bg-[#211C84] lg:hidden flex flex-col w-1/2 h-screen items-center">
+            <aside className="text-white bg-[#211C84] lg:hidden flex flex-col w-2/3 h-screen items-center">
               <section className="flex flex-col gap-y-10">
                 {/* Logo */}
                 <div className="flex flex-col items-center mt-10">
