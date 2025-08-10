@@ -47,7 +47,7 @@ const Home = () => {
           <li className="bg-[#211C84] p-3 rounded-lg text-white w-full lg:w-1/2 flex gap-y-3 items-center justify-between">
             <i className="fa-solid fa-bug text-4xl"></i>
             <section className="flex flex-col gap-y-1 items-center">
-              <h1>Total Kerusakan</h1>
+              <h1>Total Penugasan</h1>
               <h2>{dataPenugasan.length}</h2>
             </section>
           </li>
