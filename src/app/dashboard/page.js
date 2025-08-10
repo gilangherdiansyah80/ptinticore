@@ -9,19 +9,19 @@ const Home = () => {
   const [dataPenugasan, setDataPenugasan] = useState([]);
 
   useEffect(() => {
-    fetch("https://ptinticore.online:3000/api/tim")
+    fetch("https://ptinticore.online/api/tim")
       .then((response) => response.json())
       .then((data) => setDataTim(data.payload.datas));
   }, []);
 
   useEffect(() => {
-    fetch("https://ptinticore.online:3000/api/kerusakan")
+    fetch("https://ptinticore.online/api/kerusakan")
       .then((response) => response.json())
       .then((data) => setDataKerusakan(data.payload.datas));
   }, []);
 
   useEffect(() => {
-    fetch("https://ptinticore.online:3000/api/penugasan")
+    fetch("https://ptinticore.online/api/penugasan")
       .then((response) => response.json())
       .then((data) => setDataPenugasan(data.payload.datas));
   }, []);
