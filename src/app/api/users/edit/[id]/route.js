@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import db from "../../../../../lib/db";
 import bcrypt from "bcrypt"; // pastikan sudah install: npm install bcrypt
+export const dynamic = "force-dynamic";
 
 export async function PUT(req, { params }) {
   const { id } = params;

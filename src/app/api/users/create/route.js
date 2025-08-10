@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import db from "../../../../lib/db"; // Sesuaikan path koneksi database
 import bcrypt from "bcrypt"; // install dengan: npm install bcrypt
+export const dynamic = "force-dynamic";
 
 export async function POST(req) {
   const formData = await req.formData();

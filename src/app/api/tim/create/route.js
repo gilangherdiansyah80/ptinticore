@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import db from "../../../../lib/db"; // Sesuaikan dengan path ke file koneksi database Anda
+export const dynamic = "force-dynamic";
 
 // Menggunakan multer untuk menangani file upload
 export async function POST(req) {

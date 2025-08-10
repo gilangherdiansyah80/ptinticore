@@ -1,5 +1,6 @@
 import db from "../../../../lib/db";
 import response from "../../../../utils/response";
+export const dynamic = "force-dynamic";
 
 export async function GET(request) {
   try {

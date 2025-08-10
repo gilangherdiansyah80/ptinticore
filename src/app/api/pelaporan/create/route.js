@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import db from "../../../../lib/db";
+export const dynamic = "force-dynamic";
 
 export async function POST(req) {
   const conn = await db.getConnection();

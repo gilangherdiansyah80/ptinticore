@@ -1,6 +1,7 @@
 import db from "../../../../lib/db";
 import response from "../../../../utils/response";
 import bcrypt from "bcrypt"; // install kalau belum: npm install bcrypt
+export const dynamic = "force-dynamic";
 
 export async function POST(request) {
   try {
