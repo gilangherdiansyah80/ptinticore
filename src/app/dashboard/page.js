@@ -1,6 +1,7 @@
 "use client";
 import DashboardLayout from "../../components/Dashboardlayout";
 import { useState, useEffect } from "react";
+export const dynamic = "force-dynamic";
 
 const Home = () => {
   const [dataTim, setDataTim] = useState([]);

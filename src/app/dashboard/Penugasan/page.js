@@ -1,4 +1,5 @@
 import PenugasanTimPage from "../../../modules/PenugasanTim/PenugasanTimPage";
+export const dynamic = "force-dynamic";
 
 const Penugasan = () => {
   return <PenugasanTimPage />;
