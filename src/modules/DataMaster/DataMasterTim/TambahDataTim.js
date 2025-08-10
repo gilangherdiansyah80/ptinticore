@@ -81,7 +81,7 @@ const TambahDataTim = () => {
     fetchDataUsers();
   }, []);
 
-  const excludeRole = ["Direktur", "Project Officer"];
+  const excludeRole = ["Direktur", "Project Officer", "Admin"];
 
   const fillteredUsers = dataUsers.filter(
     (user) => !excludeRole.includes(user.role)
