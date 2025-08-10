@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import db from "../../../../../lib/db";
+import bcrypt from "bcrypt"; // pastikan sudah install: npm install bcrypt
 
 export async function PUT(req, { params }) {
   const { id } = params;
@@ -27,10 +28,14 @@ export async function PUT(req, { params }) {
       );
     }
 
+    // Hash password sebelum update
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     // Update user
     await db.query(
       "UPDATE users SET username = ?, password = ?, role = ? WHERE user_id = ?",
-      [username, password, role, id]
+      [username, hashedPassword, role, id]
     );
 
     return NextResponse.json({ message: "User updated successfully" });

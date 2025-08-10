@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import db from "../../../../lib/db"; // Sesuaikan path koneksi database
+import bcrypt from "bcrypt"; // install dengan: npm install bcrypt
 
 export async function POST(req) {
   const formData = await req.formData();
@@ -30,9 +31,13 @@ export async function POST(req) {
       );
     }
 
-    // Insert user baru
+    // Hash password sebelum disimpan
+    const saltRounds = 10; // tingkat keamanan, makin tinggi makin aman tapi lebih lambat
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    // Insert user baru dengan password yang sudah di-hash
     const sql = `INSERT INTO users (username, password, role) VALUES (?, ?, ?)`;
-    await db.query(sql, [username, password, role]);
+    await db.query(sql, [username, hashedPassword, role]);
 
     return NextResponse.json(
       { message: "User created successfully" },

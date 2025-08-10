@@ -64,7 +64,7 @@ const UbahDataUser = ({ params }) => {
       const result = await response.json();
 
       if (response.ok) {
-        setAlertMessage("User Berhasil Ditambahkan!");
+        setAlertMessage("User Berhasil Diubah!");
         setShowAlert(true);
 
         setTimeout(() => {

@@ -1,5 +1,6 @@
 import db from "../../../../lib/db";
 import response from "../../../../utils/response";
+import bcrypt from "bcrypt"; // install kalau belum: npm install bcrypt
 
 export async function POST(request) {
   try {
@@ -30,8 +31,9 @@ export async function POST(request) {
 
     const user = rows[0];
 
-    // Bandingkan password langsung
-    if (password !== user.password) {
+    // Bandingkan password dengan hash
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
       return new Response(
         JSON.stringify(response(401, null, "Invalid username or password")),
         { status: 401 }
