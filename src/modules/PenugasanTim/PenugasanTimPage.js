@@ -45,8 +45,13 @@ const PenugasanTimPage = () => {
       const todayDate = getTodayDate();
       const filteredData = data.payload.datas.filter((item) => {
         const itemDate = formatDate(item.tanggal_kerusakan);
+        const kerusakanData = item.status.toLowerCase();
         console.log("Comparing dates:", itemDate, "vs", todayDate);
-        return itemDate === todayDate;
+        return (
+          itemDate === todayDate &&
+          kerusakanData !== "ditangani" &&
+          kerusakanData !== "selesai"
+        );
       });
 
       console.log("Filtered kerusakan data:", filteredData);
