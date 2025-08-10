@@ -44,7 +44,7 @@ const TambahDataJalurTol = () => {
       form.append("ruas_tol", formData.ruas_tol);
 
       const response = await fetch(
-        "http://localhost:3000/api/jalur_tol/create",
+        "https://ptinticore.online/api/jalur_tol/create",
         {
           method: "POST",
           body: form,

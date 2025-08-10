@@ -14,7 +14,7 @@ const UbahDataTim = ({ params }) => {
   // Mendapatkan data tim berdasarkan ID
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/tim/${id}`);
+      const response = await fetch(`https://ptinticore.online/api/tim/${id}`);
       const data = await response.json();
 
       if (response.ok) {
@@ -32,7 +32,7 @@ const UbahDataTim = ({ params }) => {
   // Mengambil data semua user untuk opsi select
   const fetchDataUser = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/users");
+      const response = await fetch("https://ptinticore.online/api/users");
       const data = await response.json();
       setDataUser(data.payload.datas);
     } catch (error) {
@@ -56,13 +56,16 @@ const UbahDataTim = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/api/tim/edit/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(tim),
-      });
+      const response = await fetch(
+        `https://ptinticore.online/api/tim/edit/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(tim),
+        }
+      );
 
       const result = await response.json();
       if (response.ok) {

@@ -24,7 +24,7 @@ const TambahDataKerusakan = () => {
   const fetchJenisKerusakan = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/api/list_keahlian/jenis-kerusakan"
+        "https://ptinticore.online/api/list_keahlian/jenis-kerusakan"
       );
       const data = await response.json();
       setJenisKerusakan(data.payload.datas);
@@ -35,7 +35,7 @@ const TambahDataKerusakan = () => {
 
   const fetchJalur = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/jalur_tol");
+      const response = await fetch("https://ptinticore.online/api/jalur_tol");
       const data = await response.json();
       setDataJalur(data.payload.datas);
     } catch (error) {
@@ -76,7 +76,7 @@ const TambahDataKerusakan = () => {
       }
 
       const response = await fetch(
-        "http://localhost:3000/api/kerusakan/create",
+        "https://ptinticore.online/api/kerusakan/create",
         {
           method: "POST",
           body: form,

@@ -10,7 +10,7 @@ const TampilDataJalurTol = () => {
   const [alertMessage, setAlertMessage] = useState("");
 
   const fetchData = async (id) => {
-    const response = await fetch("http://localhost:3000/api/jalur_tol");
+    const response = await fetch("https://ptinticore.online/api/jalur_tol");
     const data = await response.json();
     setDataJalurTol(data.payload.datas);
   };
@@ -22,7 +22,7 @@ const TampilDataJalurTol = () => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/jalur_tol/delete/${id}`,
+        `https://ptinticore.online/api/jalur_tol/delete/${id}`,
         {
           method: "DELETE",
         }

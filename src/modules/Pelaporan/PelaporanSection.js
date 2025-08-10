@@ -6,7 +6,7 @@ const PelaporanSection = () => {
   const [dataPelaporan, setDataPelaporan] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/api/pelaporan");
+    const response = await fetch("https://ptinticore.online/api/pelaporan");
     const data = await response.json();
     setDataPelaporan(data.payload.datas);
   };

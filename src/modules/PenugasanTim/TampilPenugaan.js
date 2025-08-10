@@ -9,7 +9,7 @@ const TampilPenugasanSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/penugasan");
+        const response = await fetch("https://ptinticore.online/api/penugasan");
         const result = await response.json();
         setDataPenugasan(result.payload?.datas || []);
       } catch (error) {

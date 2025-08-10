@@ -7,7 +7,9 @@ const RiwayatPerbaikanSection = () => {
   const tableRef = useRef(null); // 🔹 Tambah ref
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/api/riwayat_perbaikan");
+    const response = await fetch(
+      "https://ptinticore.online/api/riwayat_perbaikan"
+    );
     const data = await response.json();
     setDataPelaporan(data.payload.datas);
   };

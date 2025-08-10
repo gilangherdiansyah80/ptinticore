@@ -14,7 +14,7 @@ const TampilDataKerusakan = () => {
 
   const fetchData = async (pageNumber = 1) => {
     const response = await fetch(
-      `http://localhost:3000/api/kerusakan/limir-kerusakan?page=${pageNumber}&limit=5`
+      `https://ptinticore.online/api/kerusakan/limir-kerusakan?page=${pageNumber}&limit=5`
     );
     const data = await response.json();
     setDataKerusakan(data.payload.datas.data || []); // pastikan sesuai struktur API
@@ -33,7 +33,7 @@ const TampilDataKerusakan = () => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/kerusakan/delete/${id}`,
+        `https://ptinticore.online/api/kerusakan/delete/${id}`,
         {
           method: "DELETE",
         }

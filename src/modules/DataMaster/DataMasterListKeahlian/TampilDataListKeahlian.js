@@ -17,7 +17,7 @@ const TampilDataListKeahlian = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3000/api/list_keahlian?page=${page}&limit=${limit}`
+        `https://ptinticore.online/api/list_keahlian?page=${page}&limit=${limit}`
       );
       const data = await response.json();
       setDataListKeahlian(data.payload.datas);
@@ -36,7 +36,7 @@ const TampilDataListKeahlian = () => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/list_keahlian/delete/${id}`,
+        `https://ptinticore.online/api/list_keahlian/delete/${id}`,
         {
           method: "DELETE",
         }

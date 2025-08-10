@@ -16,7 +16,9 @@ const UbahDataJalurTol = ({ params }) => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/jalur_tol/${id}`);
+      const response = await fetch(
+        `https://ptinticore.online/api/jalur_tol/${id}`
+      );
       const data = await response.json();
 
       if (response.ok) {
@@ -50,7 +52,7 @@ const UbahDataJalurTol = ({ params }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/jalur_tol/edit/${id}`,
+        `https://ptinticore.online/api/jalur_tol/edit/${id}`,
         {
           method: "PUT",
           headers: {

@@ -37,7 +37,7 @@ const TugasSayaSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/penugasan");
+        const response = await fetch("https://ptinticore.online/api/penugasan");
         const result = await response.json();
         setDataPenugasan(result.payload?.datas || []);
       } catch (error) {
@@ -57,7 +57,7 @@ const TugasSayaSection = () => {
   const handlePengerjaan = async (penugasanId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/kerusakan/update-status`,
+        `https://ptinticore.online/api/kerusakan/update-status`,
         {
           method: "PUT",
           headers: {
@@ -103,7 +103,7 @@ const TugasSayaSection = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/pelaporan/create`,
+        `https://ptinticore.online/api/pelaporan/create`,
         {
           method: "POST",
           headers: {

@@ -40,10 +40,13 @@ const TambahDataUser = () => {
       form.append("password", formData.password);
       form.append("role", formData.role);
 
-      const response = await fetch("http://localhost:3000/api/users/create", {
-        method: "POST",
-        body: form,
-      });
+      const response = await fetch(
+        "https://ptinticore.online/api/users/create",
+        {
+          method: "POST",
+          body: form,
+        }
+      );
 
       const data = await response.json();
 

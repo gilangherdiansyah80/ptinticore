@@ -27,7 +27,9 @@ const UbahDataKerusakan = ({ params }) => {
   // Fetch data kerusakan by ID
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/kerusakan/${id}`);
+      const response = await fetch(
+        `https://ptinticore.online/api/kerusakan/${id}`
+      );
       const data = await response.json();
       if (response.ok) {
         setKerusakan(data.payload.datas[0]);
@@ -42,7 +44,7 @@ const UbahDataKerusakan = ({ params }) => {
   const fetchDataJenisKerusakan = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/list_keahlian/jenis-kerusakan`
+        `https://ptinticore.online/api/list_keahlian/jenis-kerusakan`
       );
       const data = await response.json();
       if (response.ok) {
@@ -58,7 +60,7 @@ const UbahDataKerusakan = ({ params }) => {
   // Fetch opsi jalur untuk dropdown
   const fetchJalur = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/jalur_tol");
+      const response = await fetch("https://ptinticore.online/api/jalur_tol");
       const data = await response.json();
       setDataJalur(data.payload.datas);
     } catch (error) {
@@ -97,7 +99,7 @@ const UbahDataKerusakan = ({ params }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/kerusakan/edit/${id}`,
+        `https://ptinticore.online/api/kerusakan/edit/${id}`,
         {
           method: "PUT",
           headers: {

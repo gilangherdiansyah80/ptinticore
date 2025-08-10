@@ -41,7 +41,7 @@ const TambahDataTim = () => {
       const form = new FormData();
       form.append("user_id", formData.user_id);
 
-      const response = await fetch("http://localhost:3000/api/tim/create", {
+      const response = await fetch("https://ptinticore.online/api/tim/create", {
         method: "POST",
         body: form,
       });
@@ -69,7 +69,7 @@ const TambahDataTim = () => {
 
   const fetchDataUsers = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/users");
+      const response = await fetch("https://ptinticore.online/api/users");
       const data = await response.json();
       setDataUsers(data.payload.datas);
     } catch (error) {

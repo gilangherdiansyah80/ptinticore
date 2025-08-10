@@ -21,7 +21,7 @@ const UbahDataListKeahlian = ({ params }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/list_keahlian/${id}`
+          `https://ptinticore.online/api/list_keahlian/${id}`
         );
         const data = await response.json();
         setForm(data.payload.datas[0]);
@@ -56,7 +56,7 @@ const UbahDataListKeahlian = ({ params }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/list_keahlian/edit/${id}`,
+        `https://ptinticore.online/api/list_keahlian/edit/${id}`,
         {
           method: "PUT",
           headers: {

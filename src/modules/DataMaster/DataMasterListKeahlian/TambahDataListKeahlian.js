@@ -48,7 +48,7 @@ const TambahDataListKeahlian = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/list_keahlian/create",
+        "https://ptinticore.online/api/list_keahlian/create",
         {
           method: "POST",
           headers: {

@@ -19,7 +19,7 @@ const UbahDataUser = ({ params }) => {
   // Fungsi untuk mendapatkan data produk
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${id}`);
+      const response = await fetch(`https://ptinticore.online/api/users/${id}`);
       const data = await response.json();
 
       if (response.ok) {
@@ -53,7 +53,7 @@ const UbahDataUser = ({ params }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/edit/${id}`,
+        `https://ptinticore.online/api/users/edit/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

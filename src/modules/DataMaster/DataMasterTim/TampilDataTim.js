@@ -10,7 +10,7 @@ const TampilDataTim = () => {
   const [alertMessage, setAlertMessage] = useState("");
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/api/tim");
+    const response = await fetch("https://ptinticore.online/api/tim");
     const data = await response.json();
     setDataTim(data.payload.datas);
   };
@@ -22,7 +22,7 @@ const TampilDataTim = () => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/tim/delete/${id}`,
+        `https://ptinticore.online/api/tim/delete/${id}`,
         {
           method: "DELETE",
         }

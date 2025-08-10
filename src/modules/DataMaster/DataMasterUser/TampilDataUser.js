@@ -10,7 +10,7 @@ const TampilDataUser = () => {
   const [alertMessage, setAlertMessage] = useState("");
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/api/users");
+    const response = await fetch("https://ptinticore.online/api/users");
     const data = await response.json();
     setDataUsers(data.payload.datas);
   };
@@ -22,7 +22,7 @@ const TampilDataUser = () => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/delete/${id}`,
+        `https://ptinticore.online/api/users/delete/${id}`,
         {
           method: "DELETE",
         }
