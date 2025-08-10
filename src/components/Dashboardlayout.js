@@ -280,7 +280,7 @@ const DashboardLayout = ({ title, children }) => {
           </button>
 
           {showLogout && (
-            <div className="flex flex-col items-center lg:hidden absolute top-44 right-3 w-1/2 border border-white">
+            <div className="flex flex-col items-center lg:hidden absolute top-44 right-3 w-2/3 border border-white">
               <section className="flex flex-col items-center gap-y-1 bg-[#211C84] w-full p-3">
                 <div className="flex items-center gap-x-3 cursor-pointer w-20 h-20 bg-gray-400 rounded-full justify-center">
                   <i className="fas fa-user text-white text-2xl"></i>
