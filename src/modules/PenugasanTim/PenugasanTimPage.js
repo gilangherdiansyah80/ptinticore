@@ -35,7 +35,7 @@ const PenugasanTimPage = () => {
 
   const fetchDataKerusakan = async () => {
     try {
-      const response = await fetch("https://ptinticore.online/api/kerusakan");
+      const response = await fetch("http://localhost:3000/api/kerusakan");
       const data = await response.json();
 
       console.log("Raw kerusakan data:", data);
@@ -64,7 +64,7 @@ const PenugasanTimPage = () => {
 
   const fetchDataTim = async () => {
     try {
-      const response = await fetch("https://ptinticore.online/api/tim");
+      const response = await fetch("http://localhost:3000/api/tim");
       const data = await response.json();
 
       console.log("Raw tim data:", data);
@@ -80,7 +80,7 @@ const PenugasanTimPage = () => {
   const fetchListKeahlian = async () => {
     try {
       const response = await fetch(
-        "https://ptinticore.online/api/list_keahlian/allData"
+        "http://localhost:3000/api/list_keahlian/allData"
       );
       const data = await response.json();
 
@@ -135,7 +135,35 @@ const PenugasanTimPage = () => {
   // Fungsi untuk menangani checkbox tim
   const handleTimChange = (tim) => {
     const newSelected = [...selectedTim];
+    console.log("newSelected:", newSelected);
     const index = newSelected.findIndex((t) => t.tim_id === tim.tim_id);
+
+    // Fungsi helper untuk mengekstrak nama tol dari string
+    const extractTolName = (str) => {
+      if (!str) return "";
+      // Menghapus "Tol " dari awal string jika ada
+      const cleanStr = str.replace(/^Tol\s+/i, "");
+      const words = cleanStr.trim().split(" ");
+      return words[words.length - 1];
+    };
+
+    // Fungsi helper untuk mengekstrak nama tol dari role tim
+    const extractTolFromRole = (role) => {
+      if (!role) return "";
+      // Format: "Tim A Padaleunyi" -> "Padaleunyi"
+      // atau "Tim B Cipularang" -> "Cipularang"
+      const match = role.match(/^Tim\s+[A-Z]\s+(.+)$/i);
+      return match ? match[1] : "";
+    };
+
+    // Fungsi helper untuk mengekstrak ruas dari role tim
+    const extractRuasFromRole = (role) => {
+      if (!role) return "";
+      // Format: "Tim A Padaleunyi" -> "A"
+      // atau "Tim B Cipularang" -> "B"
+      const match = role.match(/^Tim\s+([A-Z])\s+/i);
+      return match ? match[1] : "";
+    };
 
     if (index > -1) {
       newSelected.splice(index, 1);
@@ -144,10 +172,89 @@ const PenugasanTimPage = () => {
       delete newPositions[tim.tim_id];
       setTimPositions(newPositions);
     } else {
+      // Cek apakah ada kerusakan yang dipilih
+      if (selectedKerusakan.length === 0) {
+        alert("Silakan pilih kerusakan terlebih dahulu sebelum memilih tim!");
+        return;
+      }
+
+      // Ambil jalur tol dan ruas dari kerusakan yang dipilih
+      const selectedJalurTol = selectedKerusakan[0].nama_tol; // "Tol Padaleunyi"
+      const selectedRuas = selectedKerusakan[0].ruas_tol; // "A" atau "B"
+
+      // Cek apakah tim adalah tim siaga (flexible ke mana pun)
+      const isTimSiaga = tim.role === "Tim Siaga";
+
+      console.log("selectedJalurTol:", selectedJalurTol);
+      console.log("selectedRuas:", selectedRuas);
+      console.log("tim.role:", tim.role);
+      console.log("isTimSiaga:", isTimSiaga);
+
+      if (!isTimSiaga) {
+        // Ekstrak nama tol dari role tim
+        const timTolName = extractTolFromRole(tim.role); // "Tim A Padaleunyi" -> "Padaleunyi"
+        const timRuas = extractRuasFromRole(tim.role); // "Tim A Padaleunyi" -> "A"
+
+        // Ekstrak nama tol dari kerusakan (hilangkan "Tol " prefix)
+        const kerusakanTolName = extractTolName(selectedJalurTol); // "Tol Padaleunyi" -> "Padaleunyi"
+
+        console.log("timTolName:", timTolName);
+        console.log("timRuas:", timRuas);
+        console.log("kerusakanTolName:", kerusakanTolName);
+
+        // Cek apakah nama tol cocok
+        if (timTolName.toLowerCase() !== kerusakanTolName.toLowerCase()) {
+          alert(
+            `Tim ${tim.role} tidak dapat dipilih karena berada di ${timTolName}, sedangkan kerusakan terjadi di ${kerusakanTolName}. Hanya tim siaga yang dapat bertugas lintas jalur tol.`
+          );
+          return;
+        }
+
+        // Cek apakah ruas cocok
+        if (timRuas.toLowerCase() !== selectedRuas.toLowerCase()) {
+          alert(
+            `Tim ${tim.role} tidak dapat dipilih karena menangani ruas ${timRuas}, sedangkan kerusakan terjadi di ruas ${selectedRuas}.`
+          );
+          return;
+        }
+      }
+
       newSelected.push(tim);
     }
 
     setSelectedTim(newSelected);
+  };
+
+  // Tambahan: Fungsi untuk memfilter tim yang tersedia berdasarkan kerusakan yang dipilih
+  const getAvailableTeams = () => {
+    if (selectedKerusakan.length === 0) {
+      return dataTim;
+    }
+
+    const selectedJalurTol = selectedKerusakan[0].nama_tol;
+    const selectedRuas = selectedKerusakan[0].ruas_tol;
+    const kerusakanTolName = selectedJalurTol.replace(/^Tol\s+/i, "");
+
+    return dataTim.filter((tim) => {
+      // Tim siaga bisa ke mana saja
+      if (tim.role === "Tim Siaga") {
+        return true;
+      }
+
+      // Untuk tim lain, cek kesesuaian tol dan ruas
+      const match = tim.role.match(/^Tim\s+([A-Z])\s+(.+)$/i);
+      if (match) {
+        const timRuas = match[1];
+        const timTolName = match[2];
+
+        return (
+          timTolName.toLowerCase() === kerusakanTolName.toLowerCase() &&
+          timRuas.toLowerCase() === selectedRuas.toLowerCase()
+        );
+      }
+
+      return false;
+    });
   };
 
   // Fungsi untuk mengatur posisi tim
@@ -474,7 +581,7 @@ const PenugasanTimPage = () => {
       console.log("Data yang akan dikirim:", dataToSave);
 
       const response = await fetch(
-        "https://ptinticore.online/api/penugasan/create",
+        "http://localhost:3000/api/penugasan/create",
         {
           method: "POST",
           headers: {
