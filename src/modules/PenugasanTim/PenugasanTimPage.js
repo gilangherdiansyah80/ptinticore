@@ -35,7 +35,7 @@ const PenugasanTimPage = () => {
 
   const fetchDataKerusakan = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/kerusakan");
+      const response = await fetch("https://ptinticore.online/api/kerusakan");
       const data = await response.json();
 
       console.log("Raw kerusakan data:", data);
@@ -64,7 +64,7 @@ const PenugasanTimPage = () => {
 
   const fetchDataTim = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/tim");
+      const response = await fetch("https://ptinticore.online/api/tim");
       const data = await response.json();
 
       console.log("Raw tim data:", data);
@@ -80,7 +80,7 @@ const PenugasanTimPage = () => {
   const fetchListKeahlian = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/api/list_keahlian/allData"
+        "https://ptinticore.online/api/list_keahlian/allData"
       );
       const data = await response.json();
 
@@ -581,7 +581,7 @@ const PenugasanTimPage = () => {
       console.log("Data yang akan dikirim:", dataToSave);
 
       const response = await fetch(
-        "http://localhost:3000/api/penugasan/create",
+        "https://ptinticore.online/api/penugasan/create",
         {
           method: "POST",
           headers: {
